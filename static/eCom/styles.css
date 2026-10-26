@@ -1,0 +1,35 @@
+.card.store-card {
+    background-color: rgb(200, 200, 200);
+    border-radius: 12px;
+}
+
+.store-card .card-title {
+    font-weight: bold;
+}
+
+.store-card .card-body {
+    min-height: 140px;
+}
+
+.card.prod-card {
+    background-color: rgb(50, 40, 115);
+    border-radius: 12px;
+}
+
+.prod-card .card-title {
+    font-weight: bold;
+    color: white;
+}
+
+.prod-card .card-body {
+    min-height: 140px;
+}
+
+.prod-card .card-text {
+    color: white;
+}
+
+.prod-card .card-price {
+    color: white;
+    font-weight: bold;
+}
