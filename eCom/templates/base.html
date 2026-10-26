@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'eCom/styles.css' %}" />
+
+    <title>
+      {% block title %}
+        Commerce
+      {% endblock title %}
+    </title>
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark bg-gradient" data-bs-theme="dark">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1 bg-white text-black fst-italic px3 py-2 rounded">Commerce</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="NavbarNav">
+          <div class="navbar-nav w-100">
+            {% block nav_links %}
+            {% endblock nav_links %}
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <main class="container mt-5 pt-4">
+      {% block content %}
+      {% endblock content %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
