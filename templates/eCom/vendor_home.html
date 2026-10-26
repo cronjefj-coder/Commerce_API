@@ -1,0 +1,73 @@
+<!-- eCom/templates/eCom/vendor_home.html -->
+{% extends "base.html" %}
+{% block title %}
+  Commerce - Vendor Home
+{% endblock %}
+
+{% block nav_links %}
+  <a class="nav-link active" aria-current="page" href="{% url "vendor_home" %}">
+    Dashboard
+  </a>
+  <a class="nav-link ms-auto" href="{% url "logout" %}">Logout</a>
+{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-start mb-5">
+    <div class="col-md-4">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row justify-content-start mb-5">
+    <h1>Welcome, {{ user.username }}.</h1>
+    <p>
+      Your Dashboard shows all the stores that you currently have. From here
+      you can create new stores or edit stores by clicking on the store title.
+      If you want to add or edit products, please select a store first and you
+      will have options to manage products within each store. To create a
+      store, click on the Add Store button.
+    </p>
+    <div class="col-auto">
+      <a class="btn btn-dark mb-3" href="{% url 'stores_create' %}">
+        Add Store
+      </a>
+    </div>
+  </div>
+  
+  <div class="row g-4">
+    {% for store in stores %}
+
+    <div class="col-md-6 col-lg-3">
+      <div class="card shadow-sm h-100 store-card">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a class="text-decoration-none text-reset" href="{% url 'stores_detail' pk=store.pk %}">
+              {{ store.name }}
+            </a>           
+          </h5>
+          <p class="card-text">
+            {{ store.description|truncatewords:10 }}
+          <p>
+        </div>
+      </div>
+    </div>
+    
+    {% empty %}
+    <div class="col-12">
+      <div class="alert alert-info">
+        No stores to display. Create you first store.
+      </div>
+    </div>
+
+    {% endfor %}
+  
+  </div>
+
+{% endblock %}

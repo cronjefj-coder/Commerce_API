@@ -1,0 +1,68 @@
+<!-- eCom/templates/eCom/review_form.html -->
+{% extends "base.html" %}
+{% block title %}
+ Commerce - Review
+{% endblock %}
+
+{% block nav_links %}
+  <a class="nav-link" href="{% url "buyer_home" %}">Home</a>
+  <a class="nav-link" href="{% url "products_detail_buyer" pk=product.pk %}">
+    Back to Product
+  </a>
+  <a class="nav-link ms-auto" href="{% url "logout" %}">Logout</a>
+{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-6 text-center">
+      <h1 class="fw-bold">Review {{ product.name }}:</h1>
+      <p>A review is verified if you have already purchased the product.</p>
+      <p class="fw-bold">Reviewed by: {{ user.username }}</p>
+      {% if verified %}
+        Verified: Yes
+      {% else %}
+        Verified: No
+      {% endif %}
+    </div>
+  </div>
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-4">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  <form method="POST" action="{% url "add_review" pk=product.pk %}">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating</label>
+      <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" step="1" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="comments" class="form-label">Comments</label>
+      <textarea class="form-control" id="comments" name="comments" rows="4" required></textarea>
+    </div>
+
+    <div class="d-flex">
+      <button type="submit" class="btn btn-dark">Save</button>
+      <a class="btn btn-dark ms-2" href="{% url "products_detail_buyer" pk=product.pk %}">
+        Cancel
+      </a>
+    </div>
+  </form>
+{% endblock %}
+
+

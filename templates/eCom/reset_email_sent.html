@@ -1,0 +1,21 @@
+<!-- eCom/templates/eCom/reset_email_sent.html -->
+{% extends "base.html" %}
+{% block title %}
+  Commerce - Email sent
+{% endblock %}
+
+{% block nav_links %}
+  <a class="nav-link" href="{% url "welcome" %}">Home</a>
+{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-start mb-5">
+    <h1 class="fw-bold">Reset Email Sent</h1>
+    <p>
+      A link to reset your password has been sent to your email address. 
+      Please follow the emailed link to reset your password. Take note that
+      the link is only active for 10 minutes.
+    </p>
+  </div>
+
+{% endblock %}

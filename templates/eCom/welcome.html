@@ -1,0 +1,41 @@
+<!-- eCom/templates/eCom/welcome.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+  Commerce - Welcome
+{% endblock %}
+
+{% block nav_links %}
+  <a class="nav-link active" aria-current="page" href="{% url "welcome" %}">
+    Home
+  </a>
+  <a class="nav-link" href="{% url "login" %}">Log In</a>
+  <a class="nav-link" href="{% url "register" %}">Register</a>
+{% endblock %}
+
+{% block content %}
+  <h1 class="fw-bold">Welcome to Commerce.</h1>
+  <p>Commerce offers the unique eCommerce experience for users to have the
+     freedom to create their own stores and sell products within their stores
+     or to browse the products on sale and purchase at their leisure.</p>
+
+  <h2 class="fw-bold">Register:</h2>
+  <p>
+    If you are not yet a user, you can click register below to register as a
+    user. You will have the option of either registering as a Vendor or as a
+    Buyer.<br>
+    As a Buyer, you will be able to browse and purchase all products available
+    and also leave reviews for the products.<br>
+    As a Vendor, you can create your own stores and add products you want to
+    sell to your stores. Product and stores management functions are also 
+    available for you to edit or remove any store or product from your profile.
+  </p>
+  <a class="btn btn-dark" href="{% url "register" %}">Register</a>
+
+  <h2 class="fw-bold">Login:</h2>
+  <p>
+    If you are already a registered user, you can click Login below to log in.
+  </p>
+  <a class="btn btn-dark" href="{% url "login" %}">Login</a>
+{% endblock %}
+  
